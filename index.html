@@ -1,0 +1,15 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>East Point Hospital - Dashboard</title>
+<style>body{font-family:Arial;margin:0;background:#f4f6f8}header{background:#004080;color:#fff;padding:14px;display:flex;gap:16px;align-items:center}header img{height:64px} .container{max-width:1000px;margin:20px auto;padding:12px} .btn{background:#0066cc;color:#fff;padding:8px 12px;border-radius:6px;border:none;cursor:pointer} .card{background:#fff;padding:12px;margin-top:8px;border-radius:6px;border:1px solid #e6e6e6;display:flex;justify-content:space-between;align-items:center}</style>
+</head><body>
+<header><img src="assets/logo.png" alt="logo"><div><h1 style="margin:0">EAST POINT HOSPITAL</h1><div>Department of General Medicine</div></div></header>
+<div class="container">
+  <div style="margin-bottom:10px"><button class="btn" onclick="location.href='add.html'">➕ Add Patient</button> <button class="btn" onclick="if(confirm('Clear local data?')){localStorage.removeItem('patients'); location.reload();}">Clear Data</button></div>
+  <h2>Patient Dashboard</h2>
+  <div id="list"></div>
+  <p style="color:#666">Click a patient to open their profile. Uploaded documents are in the <code>assets/</code> folder.</p>
+</div>
+<script>
+function loadPatients(){ const pts=JSON.parse(localStorage.getItem('patients')||'[]'); const list=document.getElementById('list'); if(!pts.length){ list.innerHTML='<i>No patients yet</i>'; return;} list.innerHTML=''; pts.forEach((p,i)=>{ const div=document.createElement('div'); div.className='card'; div.innerHTML=`<div><b>${p.name}</b><div style="color:#555">${p.age} yrs • ${p.diagnosis||''}</div></div><div><button class="btn" onclick="openP(${i})">Open</button></div>`; list.appendChild(div); }); } function openP(i){ location.href='patient.html?id='+i; } loadPatients();
+</script>
+</body></html>
