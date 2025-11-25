@@ -103,6 +103,67 @@ input, textarea, select{width:100%;padding:8px;margin:6px 0;border:1px solid #cc
   </section>
 
   <section>
+  <h3>Daily Investigations Table</h3>
+
+  <button class="btn" onclick="addInvDate()">➕ Add Date Column</button>
+
+  <div style="overflow-x:auto;margin-top:10px;">
+    <table id="dailyInvTable" class="table">
+      <thead id="dailyInvHead">
+        <tr>
+          <th>Investigation</th>
+        </tr>
+      </thead>
+
+      <tbody id="dailyInvBody">
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+const invRows = [
+  "HB",
+  "TOTAL COUNT",
+  "PLATELETS",
+  "UREA",
+  "CREATININE",
+  "SODIUM (Na)",
+  "POTASSIUM (K)",
+  "CHLORIDE (Cl)",
+  "TOTAL BILIRUBIN",
+  "DIRECT BILIRUBIN",
+  "TOTAL PROTEIN",
+  "ALBUMIN",
+  "AST",
+  "ALT",
+  "ALP",
+  "PT",
+  "APTT",
+  "INR",
+  "FLP",
+  "TSH",
+  "SEROLOGY",
+  "OTHERS"
+];
+
+function buildDailyInvTable(){
+  const head = document.getElementById("dailyInvHead").children[0];
+  const body = document.getElementById("dailyInvBody");
+
+  // If first time building table
+  if(body.innerHTML.trim() === ""){
+    invRows.forEach(row => {
+      let tr = document.createElement("tr");
+      tr.innerHTML = `<td><b>${row}</b></td>`;
+      body.appendChild(tr);
+    });
+  }
+
+  // Load saved date columns
+  const savedCols = JSON.parse(localStorage.getItem("invcols_"+id) ||_
+
+  <section>
     <h3>Investigations</h3>
     <p class="small">You can add investigations as rows in the table below. You can also view the uploaded Investigations Chart (PDF) and uploaded discharge template.</p>
     <table class="table" id="invTable">
